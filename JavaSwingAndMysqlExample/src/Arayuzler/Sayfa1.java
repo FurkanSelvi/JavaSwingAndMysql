@@ -1,0 +1,691 @@
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Arayuzler;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.ObservableList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+import sinifllar.Personel;
+import sinifllar.listeleme;
+
+/**
+ *
+ * @author furkan
+ */
+public class Sayfa1 extends javax.swing.JFrame {
+private JPopupMenu menu = new JPopupMenu("Popup");
+    /**
+     * Creates new form Sayfa1
+     */
+    public Sayfa1() {
+        initComponents();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        ydogum.setDateFormat(df);
+        ydogm.setToolTipText("Orn: 2015-05-05");
+        yenile();
+        
+         try{        
+        DefaultComboBoxModel tab=  (DefaultComboBoxModel) ycinsiyet.getModel();
+        tab.removeAllElements();
+        ycinsiyet.addItem("");
+        ycinsiyet.addItem("Bay");
+        ycinsiyet.addItem("Bayan");
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+          JMenuItem guncelle=new JMenuItem("Güncelle");
+          JMenuItem izinekle=new JMenuItem("Izin Ekle");
+        menu.add(guncelle);
+        guncelle.addActionListener(
+			new ActionListener(){
+                                @Override
+				public void actionPerformed(ActionEvent e)
+				{
+                                 guncelle gc = new guncelle();
+                                 try {
+                                            Personel pr = new Personel(null, null, null, null, null, null, null).pGetir(aratab.getValueAt(aratab.getSelectedRow(), 0).toString());
+                                            gc.lbltc(aratab.getValueAt(aratab.getSelectedRow(), 0).toString());
+                                            gc.ksicil(aratab.getValueAt(aratab.getSelectedRow(), 1).toString());
+                                            gc.kad(aratab.getValueAt(aratab.getSelectedRow(), 2).toString());
+                                            gc.ksoyad(aratab.getValueAt(aratab.getSelectedRow(), 3).toString());
+                                            int i = ("Bay".equals(pr.getCinsiyet())) ? 1:2;
+                                            gc.kcinsiyet(i);
+                                            gc.kdogum(aratab.getValueAt(aratab.getSelectedRow(), 5).toString());
+                                            gc.ksehir(aratab.getValueAt(aratab.getSelectedRow(), 6).toString());
+                                            gc.show();
+                                            } catch (Exception ex) {
+                                             JOptionPane.showMessageDialog(null, "Önce personeli seçiniz!!");
+                                                        }
+                                                        	}
+                                                                        });
+                                                                                    
+                                            menu.add(izinekle);
+                                                izinekle.addActionListener(
+                                                    new ActionListener(){
+                                                        @Override
+                                                	public void actionPerformed(ActionEvent e)
+                                                	{
+                                                        try {
+                                                         İzinEkle sf = new İzinEkle();
+                                                            sf.lbltc(aratab.getValueAt(aratab.getSelectedRow(), 0).toString());
+                                                            sf.show();
+                                                               } catch (Exception ex) {
+                                                                  JOptionPane.showMessageDialog(null, "Önce personeli seçiniz!!");
+                                                                  }
+                                                                
+                                                                	}
+                                                                              });
+                                                                                     }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jLabel4 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        ytcno = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        ysicil = new javax.swing.JTextField();
+        yad = new javax.swing.JTextField();
+        ysoyad = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        ydogum = new datechooser.beans.DateChooserCombo();
+        ycinsiyet = new javax.swing.JComboBox();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        kaydet = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        aratab = new javax.swing.JTable();
+        jLabel17 = new javax.swing.JLabel();
+        ysehir = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        pad = new javax.swing.JTextField();
+        psoyad = new javax.swing.JTextField();
+        psicil = new javax.swing.JComboBox();
+        siara = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        lbltarih = new javax.swing.JLabel();
+        ydogm = new javax.swing.JTextField();
+        lblhata = new javax.swing.JLabel();
+        temiz = new javax.swing.JButton();
+        lblbilgi2 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        jLabel4.setText("jLabel4");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Personel Ekleme Güncelleme Arama");
+
+        jButton2.setText("Sayfa 2a->");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Sayfa 2b->");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Sayfa 2c->");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Nimbus Mono L", 1, 15)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(239, 24, 9));
+        jLabel1.setText("Yeni Personel Kayıt");
+
+        jLabel3.setText("Sicil No :");
+
+        jLabel5.setText("Ad  :");
+
+        jLabel6.setText("Cinsiyet :");
+
+        jLabel7.setText("Soyad :");
+
+        jLabel8.setText("Doğum Tarihi :");
+
+        jLabel9.setText("Tc No :");
+
+        ydogum.addSelectionChangedListener(new datechooser.events.SelectionChangedListener() {
+            public void onSelectionChange(datechooser.events.SelectionChangedEvent evt) {
+                ydogumOnSelectionChange(evt);
+            }
+        });
+
+        ycinsiyet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        kaydet.setText("Kaydet");
+        kaydet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kaydetActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setFont(new java.awt.Font("Nimbus Mono L", 1, 15)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(239, 24, 9));
+        jLabel16.setText("Personel Arama");
+
+        aratab.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Tc No", "Sicil No", "Ad", "Soyad", "Cinsiyet", "Dogum Tarihi", "Şehir"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        aratab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                aratabMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(aratab);
+
+        jLabel17.setText("Şehir :");
+
+        jLabel19.setText("Ad ile :");
+
+        jLabel20.setText("Soyad ile :");
+
+        jLabel21.setText("Sicil No ile :");
+
+        pad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                padActionPerformed(evt);
+            }
+        });
+
+        psoyad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                psoyadActionPerformed(evt);
+            }
+        });
+
+        psicil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        siara.setText("Arama Yap");
+        siara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siaraActionPerformed(evt);
+            }
+        });
+
+        jLabel23.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+
+        lbltarih.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+
+        lblhata.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+
+        temiz.setText("Temizle");
+        temiz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                temizActionPerformed(evt);
+            }
+        });
+
+        lblbilgi2.setFont(new java.awt.Font("Ubuntu", 0, 10)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(239, 24, 9));
+        jLabel2.setText("Arayın ve işlem yapmak için sağ tıklayın!!!");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(102, 102, 102)
+                                .addComponent(jButton2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(jLabel17))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(50, 50, 50)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel3)
+                                                .addComponent(jLabel5)
+                                                .addComponent(jLabel7)
+                                                .addComponent(jLabel6)
+                                                .addComponent(jLabel9)))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addContainerGap()
+                                            .addComponent(jLabel8))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ysoyad, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                                    .addComponent(yad)
+                                    .addComponent(ysicil)
+                                    .addComponent(ytcno)
+                                    .addComponent(ysehir, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                                    .addComponent(ycinsiyet, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(ydogm, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(ydogum, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(2, 2, 2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(kaydet)
+                        .addGap(36, 36, 36)))
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(100, 100, 100)
+                                .addComponent(jLabel16)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(lblhata)
+                                .addGap(194, 194, 194))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel21)
+                                    .addComponent(jLabel20))
+                                .addGap(4, 4, 4)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(psoyad, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(psicil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(siara)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(temiz))
+                                    .addComponent(pad, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbltarih)
+                                .addGap(125, 125, 125)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblbilgi2)
+                        .addGap(157, 157, 157))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel2)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jProgressBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ytcno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ysicil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(yad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ysoyad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(ycinsiyet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ydogum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8))
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel17)
+                                    .addComponent(ysehir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                                .addComponent(kaydet)
+                                .addGap(26, 26, 26))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ydogm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(jButton3)
+                            .addComponent(jButton4)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(lblhata)
+                                .addGap(273, 273, 273)
+                                .addComponent(lbltarih)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel23))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(153, 153, 153)
+                                        .addComponent(lblbilgi2))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel19)
+                                    .addComponent(pad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel20)
+                                    .addComponent(psoyad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel21)
+                                    .addComponent(psicil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(siara)
+                                    .addComponent(temiz))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Sayfa2a ac=new Sayfa2a();
+            ac.show();
+            this.hide();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Sayfa2b ac=new Sayfa2b();
+            ac.show();
+            this.hide();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Sayfa2c ac=new Sayfa2c();
+            ac.show();
+            this.hide();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void siaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siaraActionPerformed
+        try {
+          ObservableList<Personel> sonuc=new Personel(null, null, null, null, null, null, null).sicilara(pad.getText(),psoyad.getText(),psicil.getSelectedItem().toString());
+           if(!sonuc.isEmpty()){
+          DefaultTableModel tab= (DefaultTableModel) aratab.getModel();
+                    tab.getDataVector().clear();
+            aratab.repaint();
+        Vector [] v= new Vector[sonuc.size()];
+        for (int i = 0; i < sonuc.size(); i++) {
+            v[i]=new Vector();
+            v[i].add(sonuc.get(i).getTcno());
+            v[i].add(sonuc.get(i).getSicilno());
+            v[i].add(sonuc.get(i).getAd());
+            v[i].add(sonuc.get(i).getSoyad());
+            v[i].add(sonuc.get(i).getCinsiyet());
+            v[i].add(sonuc.get(i).getDogumtarihi());
+            v[i].add(sonuc.get(i).getSehir());
+            tab.insertRow(i, v[i]);
+        }
+           }
+           else{
+                JOptionPane.showMessageDialog(null, "Aradıgınız sonuc bulunmamaktadır.!!");
+           }
+        }catch (SQLException ex) {
+            Logger.getLogger(Sayfa2a.class.getName()).log(Level.SEVERE, null, ex);  
+        }
+    }//GEN-LAST:event_siaraActionPerformed
+
+    private void kaydetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kaydetActionPerformed
+       boolean kayitkontrol=false;
+       Personel me = new Personel(ytcno.getText(), ysicil.getText(), yad.getText(), ysoyad.getText(), ycinsiyet.getSelectedItem().toString(), ydogum.getText(), ysehir.getText());
+       kayitkontrol=me.personelEkle(me);
+       if(kayitkontrol){
+           JOptionPane.showMessageDialog(null, "Kaydedildi");
+          ytcno.setText("");
+            ysicil.setText("");
+               yad.setText("");
+                ysoyad.setText("");
+                 ycinsiyet.setSelectedIndex(0);
+                 ysehir.setText("");
+                 ydogm.setText("");
+                 yenile();
+       }
+       else{
+           JOptionPane.showMessageDialog(null, "Kayıdedilemedi");
+       }
+    }//GEN-LAST:event_kaydetActionPerformed
+
+    private void ydogumOnSelectionChange(datechooser.events.SelectionChangedEvent evt) {//GEN-FIRST:event_ydogumOnSelectionChange
+        ydogm.setText(ydogum.getText());
+    }//GEN-LAST:event_ydogumOnSelectionChange
+
+    private void temizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_temizActionPerformed
+        pad.setText("");
+        psoyad.setText("");
+        psicil.setSelectedIndex(0);
+    }//GEN-LAST:event_temizActionPerformed
+
+    private void aratabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aratabMouseClicked
+         if(SwingUtilities.isRightMouseButton(evt)){
+            menu.show(evt.getComponent(),evt.getX(),evt.getY());
+        }
+    }//GEN-LAST:event_aratabMouseClicked
+
+    private void padActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_padActionPerformed
+         try {
+          ObservableList<Personel> sonuc=new Personel(null, null, null, null, null, null, null).sicilara(pad.getText(),psoyad.getText(),psicil.getSelectedItem().toString());
+           if(!sonuc.isEmpty()){
+          DefaultTableModel tab= (DefaultTableModel) aratab.getModel();
+                    tab.getDataVector().clear();
+            aratab.repaint();
+        Vector [] v= new Vector[sonuc.size()];
+        for (int i = 0; i < sonuc.size(); i++) {
+            v[i]=new Vector();
+            v[i].add(sonuc.get(i).getTcno());
+            v[i].add(sonuc.get(i).getSicilno());
+            v[i].add(sonuc.get(i).getAd());
+            v[i].add(sonuc.get(i).getSoyad());
+            v[i].add(sonuc.get(i).getCinsiyet());
+            v[i].add(sonuc.get(i).getDogumtarihi());
+            v[i].add(sonuc.get(i).getSehir());
+            tab.insertRow(i, v[i]);
+        }
+           }
+           else{
+                JOptionPane.showMessageDialog(null, "Aradıgınız sonuc bulunmamaktadır.!!");
+           }
+        }catch (SQLException ex) {
+            Logger.getLogger(Sayfa2a.class.getName()).log(Level.SEVERE, null, ex);  
+        }
+    }//GEN-LAST:event_padActionPerformed
+
+    private void psoyadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psoyadActionPerformed
+        try {
+          ObservableList<Personel> sonuc=new Personel(null, null, null, null, null, null, null).sicilara(pad.getText(),psoyad.getText(),psicil.getSelectedItem().toString());
+           if(!sonuc.isEmpty()){
+          DefaultTableModel tab= (DefaultTableModel) aratab.getModel();
+                    tab.getDataVector().clear();
+            aratab.repaint();
+        Vector [] v= new Vector[sonuc.size()];
+        for (int i = 0; i < sonuc.size(); i++) {
+            v[i]=new Vector();
+            v[i].add(sonuc.get(i).getTcno());
+            v[i].add(sonuc.get(i).getSicilno());
+            v[i].add(sonuc.get(i).getAd());
+            v[i].add(sonuc.get(i).getSoyad());
+            v[i].add(sonuc.get(i).getCinsiyet());
+            v[i].add(sonuc.get(i).getDogumtarihi());
+            v[i].add(sonuc.get(i).getSehir());
+            tab.insertRow(i, v[i]);
+        }
+           }
+           else{
+                JOptionPane.showMessageDialog(null, "Aradıgınız sonuc bulunmamaktadır.!!");
+           }
+        }catch (SQLException ex) {
+            Logger.getLogger(Sayfa2a.class.getName()).log(Level.SEVERE, null, ex);  
+        }
+    }//GEN-LAST:event_psoyadActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Sayfa1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Sayfa1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Sayfa1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Sayfa1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Sayfa1().setVisible(true);
+            }
+        });
+    }
+    public void yenile(){
+        try{        
+        ObservableList<ArrayList> sonuc = new listeleme().sicilGetir();
+        DefaultComboBoxModel tab=  (DefaultComboBoxModel) psicil.getModel();
+        tab.removeAllElements();
+        psicil.addItem("");
+            for (int j = 0; j < sonuc.size(); j++) {
+                for (int i = 0; i < sonuc.get(j).size(); i++) {
+                psicil.addItem(sonuc.get(j).get(i));
+                } 
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable aratab;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton kaydet;
+    private javax.swing.JLabel lblbilgi2;
+    private javax.swing.JLabel lblhata;
+    private javax.swing.JLabel lbltarih;
+    private javax.swing.JTextField pad;
+    private javax.swing.JComboBox psicil;
+    private javax.swing.JTextField psoyad;
+    private javax.swing.JButton siara;
+    private javax.swing.JButton temiz;
+    private javax.swing.JTextField yad;
+    private javax.swing.JComboBox ycinsiyet;
+    private javax.swing.JTextField ydogm;
+    private datechooser.beans.DateChooserCombo ydogum;
+    private javax.swing.JTextField ysehir;
+    private javax.swing.JTextField ysicil;
+    private javax.swing.JTextField ysoyad;
+    private javax.swing.JTextField ytcno;
+    // End of variables declaration//GEN-END:variables
+}
