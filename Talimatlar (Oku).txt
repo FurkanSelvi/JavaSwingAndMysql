@@ -1,2 +1,0 @@
-@@@	Data Chooserlar hata verirse projeye sag tıklayıp resolve project problem..(en alttan 2.) tıklayıp sonra gelen pencerede resolve tıklayıp Data @@@	Chooserın yolunu göstermeniz yetertlidir.
-

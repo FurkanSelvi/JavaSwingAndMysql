@@ -20,7 +20,7 @@ public class veriTabaniBaglantisi {
     private String driver="com.mysql.jdbc.Driver";
     private String dbname="ITS";
     private String username="root";
-    private String password="";
+    private String password="123123124";
     
     
     public void baglan(){
